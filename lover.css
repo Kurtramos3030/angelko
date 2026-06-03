@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #826E8B, #E69CBA, #E4B3C7);
+    font-family: Georgia, serif;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+/* INVITATION TITLE */
+.invitation-title {
+    text-align: center;
+    letter-spacing: 6px;
+    color: white;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* ENVELOPE */
+.envelope-wrapper {
+    text-align: center;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin: auto;
+}
+
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #E5CDD0;
+    border: 2px solid #E69CBA;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.letter-preview {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 60px;
+    z-index: 1;
+}
+
+.letter-preview h2 {
+    color: #826E8B;
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.letter-preview p {
+    color: #6d6074;
+    font-size: 1rem;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background: #E4B3C7;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: 1.2s ease;
+    z-index: 2;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+/* BUTTONS */
+.buttons-area {
+    position: relative;
+    height: 150px;
+    margin-top: 35px;
+}
+
+.btn-yes,
+.btn-no {
+    border: none;
+    cursor: pointer;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.btn-yes {
+    background: #E66E9B;
+    color: white;
+    box-shadow: 0 10px 25px rgba(230, 110, 155, 0.35);
+    z-index: 10;
+}
+
+.btn-yes:hover {
+    transform: translateY(-2px);
+}
+
+.btn-no {
+    background: white;
+    color: #826E8B;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* LETTER PAGE */
+.letter-page {
+    display: none;
+}
+
+.paper {
+    background: #fffafc;
+    border: 2px solid #E4B3C7;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.paper h1 {
+    text-align: center;
+    color: #E66E9B;
+    margin-bottom: 35px;
+    font-weight: normal;
+}
+
+.letter-content {
+    line-height: 2;
+    color: #5f5f5f;
+}
+
+.letter-content p {
+    margin-bottom: 18px;
+}
+
+.signature {
+    margin-top: 40px;
+    text-align: right;
+    color: #E66E9B;
+    font-size: 1.5rem;
+}
+
+.video-btn {
+    width: 100%;
+    margin-top: 35px;
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    background: #E66E9B;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.video-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .paper { padding: 30px; }
+    .envelope { height: 260px; }
+    .letter-preview h2 { font-size: 1.5rem; }
+}

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Surprise | Book of Love</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2c1810, #4a2c20, #6b3a2a);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            padding: 40px 20px;
+        }
+
+        /* BOOK CONTAINER */
+        .book-wrapper {
+            perspective: 1500px;
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            min-height: 580px;
+            background: #FFF8EF;
+            border-radius: 12px;
+            box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px #d4a574;
+            overflow: hidden;
+        }
+
+        /* BOOK SPINE EFFECT */
+        .book::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #d4a574, #8b5a2b, #d4a574);
+            z-index: 5;
+            box-shadow: -1px 0 3px rgba(0,0,0,0.1);
+        }
+
+        /* LEFT PAGE */
+        .left-page {
+            float: left;
+            width: 50%;
+            min-height: 580px;
+            background: #FFF8EF;
+            padding: 45px 30px;
+            box-sizing: border-box;
+            border-right: 1px solid #e8d5b0;
+        }
+
+        /* RIGHT PAGE */
+        .right-page {
+            float: right;
+            width: 50%;
+            min-height: 580px;
+            background: #FFFDF5;
+            padding: 45px 30px;
+            box-sizing: border-box;
+        }
+
+        /* CLEAR FIX */
+        .book::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        /* PAGE CONTENT */
+        .page-title {
+            font-size: 1.6rem;
+            color: #8B3A2A;
+            margin-bottom: 20px;
+            border-left: 4px solid #d4a574;
+            padding-left: 15px;
+            font-family: 'Georgia', serif;
+        }
+
+        .page-message {
+            color: #3d2b1f;
+            line-height: 1.9;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .page-message p {
+            margin-bottom: 18px;
+        }
+
+        .heart-decoration {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #d44c2f;
+        }
+
+        /* VIDEO SA RIGHT PAGE */
+        .video-frame {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: #000;
+            margin: 15px 0;
+            border: 2px solid #d4a574;
+        }
+
+        .video-frame video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-label {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8B5A4A;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .signature-line {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #8B3A2A;
+            border-top: 1px dashed #e8d5b0;
+            padding-top: 20px;
+        }
+
+        /* BACK BUTTON */
+        .back-button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 35px;
+            background: #8B3A2A;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: Georgia, serif;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background: #5c2a1e;
+            transform: translateY(-2px);
+        }
+
+        /* PAGE NUMBERS */
+        .page-number {
+            font-size: 0.7rem;
+            color: #c4a57b;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        /* HAPPY MONTHSARY SECTION */
+        .monthsary-section {
+            margin-top: 25px;
+            padding: 18px;
+            background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+            border-radius: 20px;
+            border: 2px solid #d4a574;
+            text-align: center;
+            animation: softGlow 2s ease infinite;
+        }
+
+        @keyframes softGlow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(212, 165, 116, 0.3);
+                border-color: #d4a574;
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(212, 165, 116, 0.5);
+                border-color: #e8b56e;
+            }
+        }
+
+        .monthsary-title {
+            font-size: 1.5rem;
+            color: #d44c2f;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: bold;
+        }
+
+        .monthsary-title span {
+            font-size: 1.8rem;
+            animation: heartbeat 1s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .monthsary-message {
+            font-size: 0.95rem;
+            color: #5c2a1e;
+            line-height: 1.6;
+        }
+
+        .monthsary-message strong {
+            color: #d44c2f;
+            font-size: 1rem;
+        }
+
+        .monthsary-date {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #a06b4a;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        /* MUSIC PLAYER */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(139, 58, 42, 0.85);
+            padding: 8px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            font-size: 0.7rem;
+            color: white;
+            font-family: monospace;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-player:hover {
+            background: #8B3A2A;
+            transform: scale(1.02);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .left-page, .right-page {
+                float: none;
+                width: 100%;
+                min-height: auto;
+            }
+            .book::before {
+                display: none;
+            }
+            .left-page {
+                border-right: none;
+                border-bottom: 1px solid #e8d5b0;
+            }
+            .page-title {
+                font-size: 1.3rem;
+            }
+            .monthsary-title {
+                font-size: 1.2rem;
+            }
+            .music-player {
+                bottom: 10px;
+                left: 10px;
+                padding: 5px 12px;
+            }
+        }
+
+        /* DECORATIVE */
+        .drop-cap::first-letter {
+            font-size: 2.5rem;
+            color: #d44c2f;
+            font-weight: bold;
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div style="width: 100%; max-width: 950px;">
+    <!-- LIBRO -->
+    <div class="book-wrapper">
+        <div class="book">
+            <!-- LEFT PAGE - SULAT -->
+            <div class="left-page">
+                <div class="page-title">📖 Aking Mahal,</div>
+                <div class="page-message">
+                    <p class="drop-cap">Salamat sa lahat ng ngiti, sa bawat araw na kasama kita, at sa mga alaalang hindi ko malilimutan.</p>
+                    <p>Sinulat ko ang liham na ito para sabihin sa'yo kung gaano kita pinapahalagahan. Hindi sapat ang mga salita para ilarawan ang saya na dulot mo sa puso ko.</p>
+                    <div class="heart-decoration">❤️ 💌 ❤️</div>
+                    <p>Sa kanang pahina ng librong ito, may inihanda akong munting sorpresa para sa'yo. Pindutin mo lang ang play, panoorin mo hanggang dulo — gawa 'yan ng may pagmamahal.</p>
+                </div>
+                <div class="signature-line">
+                    Yours always,<br>
+                    <strong>Kurt</strong>
+                </div>
+                <div class="page-number">— 1 —</div>
+            </div>
+
+            <!-- RIGHT PAGE - VIDEO + MONTHSARY -->
+            <div class="right-page">
+                <div class="page-title">🎬 Sorpresa para sa'yo</div>
+                <div class="video-frame">
+                    <video id="surpriseVideo" controls>
+                        <source src="vids.mp4" type="video/mp4">
+                        <p>Sorry, hindi ma-play ang video. Pero ang surprise ko: Mahal kita! ❤️</p>
+                    </video>
+                </div>
+                <div class="video-label">
+                    ✨ I-play mo na, love. Para sa'yo 'yan ✨
+                </div>
+
+                <!-- HAPPY MONTHSARY SECTION (NAGLALABASAN SA DULO) -->
+                <div class="monthsary-section">
+                    <div class="monthsary-title">
+                        <span>🎉</span>
+                        HAPPY MONTHSARY!
+                        <span>🎉</span>
+                    </div>
+                    <div class="monthsary-message">
+                        <p>Mahal ko, <strong>happy monthsary!</strong> 🥰</p>
+                        <p>Salamat sa bawat araw na kasama kita. Ikaw ang pinakamagandang nangyari sa buhay ko.</p>
+                        <p>Lumipas man ang mga buwan, ang pagmamahal ko sa'yo ay lalago pa ng lalago.</p>
+                    </div>
+                    <div class="monthsary-date">
+                        ❤️ Mahal na mahal kita, ngayon at magpakailanman ❤️
+                    </div>
+                </div>
+
+                <div class="page-message" style="margin-top: 15px;">
+                    <p style="font-size: 0.85rem; text-align: center;"><i>"Sa bawat segundo ng video na 'to, sana maramdaman mo kung gaano kita kamahal."</i></p>
+                </div>
+                <div class="page-number">— 2 —</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUTTON PABALIK SA INVITATION -->
+    <button class="back-button" onclick="window.location.href='index.html'">
+        📚 Isara ang Libro | Balik sa Invitation
+    </button>
+</div>
+
+<!-- MUSIC PLAYER (auto-play background music) -->
+<div class="music-player" id="musicPlayer">
+    <span>🎵</span>
+    <span id="musicStatus">Playing background music...</span>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="MUSIC.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // VIDEO AUTO-PLAY
+    const video = document.getElementById('surpriseVideo');
+    if (video) {
+        video.play().catch(function(error) {
+            console.log("Auto-play prevented. User need to click play.");
+            const label = document.querySelector('.video-label');
+            if (label) {
+                label.style.color = '#d44c2f';
+                label.innerHTML = '🎥 I-click ang play button sa video para mapanood ang surprise 🎥';
+            }
+        });
+    }
+
+    // MUSIC AUTO-PLAY
+    const bgMusic = document.getElementById('bgMusic');
+    const musicStatus = document.getElementById('musicStatus');
+    const musicPlayer = document.getElementById('musicPlayer');
+
+    if (bgMusic) {
+        bgMusic.volume = 0.35;
+        
+        bgMusic.play().catch(function(error) {
+            console.log("Music auto-play prevented by browser");
+            musicStatus.innerHTML = '🔇 Click to play music';
+            
+            musicPlayer.addEventListener('click', function() {
+                bgMusic.play().then(() => {
+                    musicStatus.innerHTML = '🎵 Playing background music...';
+                }).catch(e => console.log("Still can't play"));
+            });
+        });
+        
+        bgMusic.addEventListener('play', function() {
+            musicStatus.innerHTML = '🎵 Playing background music...';
+        });
+        
+        bgMusic.addEventListener('pause', function() {
+            musicStatus.innerHTML = '⏸ Music paused';
+        });
+    }
+</script>
+
+</body>
+</html>
